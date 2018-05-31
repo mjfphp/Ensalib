@@ -1,0 +1,126 @@
+<i mat-raised-button *ngIf="!menuIsOpen" (click)="openMenu()" class="fa fa-bars menuPhone" aria-hidden="true"></i>
+<aside  class="sidebar noselect phoneMenu"  [ngClass]="{'openMenu': menuIsOpen}">
+    <div id="leftside-navigation" class="nano">
+      <ul class="nano-content" [ngClass]="{'phoneContent': !menuIsOpen}">
+        <li (click)="initForm($event) && dashboard = true">
+          <a href="#"><i class="fa fa-dashboard"></i><span>Dashboard</span></a>
+        </li>
+        <li class="sub-menu">
+          <a href="#">
+            <i class="fa fa-user"></i>
+            <span>Etudiants</span>
+            <i class="arrow fa fa-angle-right pull-right"></i>
+          </a>
+          <ul>
+            <li class="subMenuli" (click)="initForm($event) && viewClients = true">
+              
+              <a  href="#">
+                  <i class="fa fa-list"></i>
+              <span>
+                  Consulter
+              </span>
+              </a>
+            </li>
+            <li class="subMenuli" (click)="initForm($event) && addClient = true">
+              <a  href="#">
+                <i class="fa fa-user-plus" aria-hidden="true"></i>
+                <span>
+                    Ajouter
+                </span>  
+              </a>
+            </li>
+            <li (click)="initForm($event) && editClient = true" class="subMenuli">                
+              <a href="ui-slider-progress.html">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                  <span>Modifier</span></a>
+            </li>           
+          </ul>
+        </li>
+        <li class="sub-menu">
+
+          <a href="javascript:void(0);">
+            <i class="fa fa-book"></i>
+            <!-- <i class="fa fa-car" aria-hidden="true"></i> -->
+            <span>Livres</span>
+            
+            <i class="arrow fa fa-angle-right pull-right"></i>
+          </a>
+          <ul>
+            <li class="subMenuli" (click)="initForm($event) && viewCars = true;">
+              <a href="tables-basic.html">
+                  <i class="fa fa-list"></i>
+                  <span>Afficher</span>
+              </a>
+            </li>
+            <li class="subMenuli" (click)="initForm($event) && addCar = true;"><a href="tables-data.html">
+                <i class="fa fa-plus-square" aria-hidden="true"></i>
+                <span>Ajouter</span></a>
+            </li>
+            <li class="subMenuli" (click)="initForm($event) && editCar = true;" >                
+              <a href="ui-slider-progress.html">
+                <i class="fa fa-pencil" aria-hidden="true" ></i>
+                <span>Editer</span></a>
+            </li>
+          </ul>
+        </li>
+        <li class="sub-menu">
+          <a  href="javascript:void(0);"><i class="fa fa fa-tasks"></i><span>Emprunt</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+          <ul>
+            <li (click)="initForm($event) && viewReservations = true;" class="subMenuli">
+              <a href="#ShowReservation">
+                <i class="fa fa-list"></i>
+              <span>Consulter</span>
+              </a>
+            </li>
+            <li (click)="initForm($event) && addReservations = true;" class="subMenuli">
+                <a href="#AddReservation">
+                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                <span>Ajouter</span>
+                </a>
+            </li>
+            <li (click)="initForm($event) && editReservation = true;" class="subMenuli">
+              <a href="#EditReservation">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                <span>Modifier</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="sub-menu">
+          <a  href="javascript:void(0);"><i class="fa fa fa-tasks"></i><span>Classe</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+          <ul>
+            <li (click)="initForm($event) && viewClasse = true" class="subMenuli">
+              <a href="#ShowReservation">
+                <i class="fa fa-list"></i>
+              <span>Consulter</span>
+              </a>
+            </li>
+            <li (click)="initForm($event) && addClasse = true;" class="subMenuli">
+                <a href="#AddReservation">
+                  <i class="fa fa-plus-square" aria-hidden="true"></i>
+                <span>Ajouter</span>
+                </a>
+            </li>
+            <li (click)="initForm($event) && editClasse = true;" class="subMenuli">
+              <a href="#EditReservation">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                <span>Modifier</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="subMenuli">
+          <a (click)="logout($event)" href="#"><i class="fa fa-sign-out" aria-hidden="true"></i><span>Logout</span></a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+  <div (click)="hideMenu($event)" class="containerAcceuil">
+    <GridElements (edit)="edit($event)" (addclient)="initForm($event) && addClient= true" (addcar)="initForm($event) && addCar= true" *ngIf="viewClasse || viewCars || viewClients || viewReservations"  [classeIsActive]="viewClasse" [carsIsActive]="viewCars"  [clientsIsActive]="viewClients" [reservationIsActive]="viewReservations"></GridElements>
+    <formCar [idToEdit]="idEdited" [editCars]="editCar" [addCars]="addCar" *ngIf="addCar || editCar"></formCar>
+    <formClient [idToEdit]="idEdited" [isEdited]="editClient" *ngIf="addClient || editClient"></formClient>
+    <Chart  *ngIf="dashboard" ></Chart>
+    <formReser [editCars]="editReservation" [addCars]="addReservations" *ngIf="addReservations || editReservation"></formReser>
+    <!-- <formReser *ngIf="a"></formReser> -->
+    <formclasse [editCars]="editClasse" [addCars]="addClasse" *ngIf="addClasse || editClasse"></formclasse>
+  </div>

@@ -1,0 +1,43 @@
+<div>
+    <mat-form-field class="example-full-width">
+        <input
+        matInput
+        type='text'
+        
+        placeholder='Type to filter the name column...'
+        (keyup)='updateFilter($event)'
+        />
+    </mat-form-field>
+    <button (click)="AddCar()" mat-fab color="primary" style="font-size:30px; margin:10px;float:right;">+</button>
+        
+    <ngx-datatable
+        class="material striped noselect"
+        [rows]="rows"
+        [columns]="columns"
+        [sortType]="'multi'"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="50"
+        [selected]="selected"
+        [selectionType]="'multiClick'"
+        [reorderable]="reorderable"
+        [limit]="10"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        >
+
+        <ngx-datatable-column
+        [width]="30"
+        [canAutoResize]="false"
+        [draggable]="true"
+        [resizeable]="true"
+        [headerCheckboxable]="true"
+        [checkboxable]="true">
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Car Model"></ngx-datatable-column>
+        <ngx-datatable-column name="Car Number"></ngx-datatable-column>
+        <ngx-datatable-column name="Rental Price"></ngx-datatable-column>
+        <ngx-datatable-column name="Date Assurance"></ngx-datatable-column>
+    </ngx-datatable>
+</div>

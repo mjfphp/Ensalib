@@ -1,0 +1,36 @@
+<div (click)="hidePopus($event)" class="noselect" id="wrap">
+  <div id="regbar">
+    <img class="logoHeader" src="images/logo.png">
+    <div id="navthing" style="float: right;">
+      <h2><a (click)="clickToLog($event)" href="#" id="loginform" style="float:right;">Login</a></h2>            
+    </div>
+  </div>
+</div>
+
+ <fieldset  (click)="hidePopus($event)" class="formholder noselect" style="    text-align: center;
+    margin: auto;
+    padding: 10px;padding: 20px 20px 20px 20px;" >
+   <p class="labelRegister" style="font-size: 40px;">Register</p>
+
+   <input type="text"  [(ngModel)]="firstName" class="inputSignUp" placeholder="Enter your firstname" />
+   <input type="text"  [(ngModel)]="lastName" class="inputSignUp" placeholder="Enter your lastname"/>
+
+   <input type="email"  [(ngModel)]="email" class="inputSignUp" placeholder="Enter your email address" />
+   <!-- <label name="password">Password</label> -->
+   <input type="password"  [(ngModel)]="password" class="inputSignUp" placeholder="Enter your password" />
+   <!-- <label name="password">Password</label> -->
+   
+   <input type="password"  [(ngModel)]="verifyPassword" class="inputSignUp" placeholder="Confirmation your password"/>
+   
+   <input type="text"  [(ngModel)]="phone" class="inputSignUp" placeholder="Enter your phone number"/>
+   
+   <input type="text"  [(ngModel)]="city" class="inputSignUp" placeholder="Enter your city"/>
+   
+   <input type="submit" (click)="signUp()" class="btnConnect" value="Sign Up" />
+   <p *ngIf="message">{{message}}</p>
+  <fieldset >
+ <!--  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script  src="js/index.js"></script>
+
+ -->

@@ -1,0 +1,84 @@
+<mat-card style="padding: 10px;" class="demo-card demo-basic">
+    <mat-toolbar color="primary">{{ isEdited ? 'Modifier' : 'Ajouter un nouveau livre'}} </mat-toolbar>
+    <mat-card-content>
+      <form style="margin-top:25px;padding: 25px;">
+        <!-- <mat-form-field class="demo-full-width">
+          <input matInput placeholder="Agency Name" disabled value="{{myAgency ? myAgency.name : ''}}">
+        </mat-form-field> -->
+        <p>
+            <mat-form-field style="width:50%">                    
+                <input name="Cin" matInput type="text" [(ngModel)]="newclient.Cin" placeholder="CIN" [formControl]="CINFormControl" ></input>                
+                <mat-error *ngIf="CINFormControl.hasError('required')">
+                    This field is required
+                </mat-error>
+            </mat-form-field>
+        </p>
+        <table style="width: 100%" cellspacing="0"><tr>
+            
+          <td>
+            <mat-form-field style="width: 100%" floatPlaceholder="never">
+              <input name="FirstName" [(ngModel)]="newclient.FirstName" matInput placeholder="Nom"  [formControl]="FirstNameFormControl">
+              <mat-error *ngIf="FirstNameFormControl.hasError('required')">
+                  This field is required
+              </mat-error>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field style="width: 100%">
+              <input name="LastName" matInput [(ngModel)]="newclient.LastName" placeholder="Prenom" [formControl]="LastNameFormControl">
+              <mat-error *ngIf="LastNameFormControl.hasError('required')">
+                  This field is required
+              </mat-error>
+            </mat-form-field>
+          </td>
+        </tr></table>
+        <p>
+            <mat-form-field style="width: 100%">
+                <input name="PhoneNumber" matInput [(ngModel)]="newclient.PhoneNumber" placeholder="Numero de téléphone" [formControl]="PhoneNumberFormControl">
+                <mat-error *ngIf="PhoneNumberFormControl.hasError('required')">
+                    This field is required
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field style="width: 100%">
+                <input name="Email" matInput [(ngModel)]="newclient.Email" placeholder="Email" [formControl]="EmailFormControl">
+                <mat-error *ngIf="EmailFormControl.hasError('required')">
+                    This field is required
+                </mat-error>
+                <mat-error *ngIf="EmailFormControl.hasError('pattern')">
+                 Please enter a valid email address
+                </mat-error>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field style="margin-right:10px;width:50%">                    
+                <input name="Address" matInput [(ngModel)]="newclient.Address" type="text" placeholder="Addresse"></input>                  
+            </mat-form-field>
+        </p>
+          <p>
+            <mat-form-field style="margin-right:10px;" >
+                <input name="DateBirth" matInput [(ngModel)]="newclient.DateBirth" (focus)="picker.open()"  [matDatepicker]="picker" placeholder="Date de naissance" [formControl]="DateBirthFormControl">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="DateBirthFormControl.hasError('required')">
+                    This field is required
+                </mat-error>
+            </mat-form-field>
+          </p>
+          <!-- <p>
+                <mat-form-field style="margin-right:10px;" >
+                    <input name="classe" matInput [(ngModel)]="newclient." (focus)="picker.open()"  [matDatepicker]="picker" placeholder="Date de naissance" [formControl]="DateBirthFormControl">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="DateBirthFormControl.hasError('required')">
+                        This field is required
+                    </mat-error>
+                </mat-form-field>
+              </p> -->
+          <p style="    margin-top: 15px;">
+              <button    mat-raised-button style="padding:5px;" color="primary" (click)="submit()">{{ isEdited ? 'Edit' : 'Add'}}</button>
+          </p>
+      </form>
+    </mat-card-content>
+  </mat-card>
+  
+  <mat-spinner style="z-index:50;position:absolute;width:30px !important;height:30px !important;top:calc(50% - 30px);left:calc(50% - 30px);" *ngIf='isloading'></mat-spinner>

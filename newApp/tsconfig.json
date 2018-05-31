@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./typings",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "target": "es5",
+    "skipLibCheck": true,
+    "stripInternal": true,
+    "noImplicitAny": false,
+    "typeRoots": [
+      "node_modules/@types/"
+    ],
+    "types": [
+      "meteor-typings",
+      "@types/underscore",
+      "node"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    ".meteor"
+  ],
+  "compileOnSave": false
+}

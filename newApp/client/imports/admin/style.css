@@ -1,0 +1,26 @@
+.fieldInputAdmin{
+    width: 80%;
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+.containerAdminConnect{
+    background-color: #cac5c5;
+    width: 35%;
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 5px;
+    padding-bottom: 20px;
+    box-shadow: 0 3px 3px #312f2f;
+}
+
+@media screen and (max-width: 800px) {
+    .containerAdminConnect{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .containerAdminConnect{
+        width: 80%;
+    }
+}

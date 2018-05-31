@@ -1,0 +1,8 @@
+
+
+@media screen and (min-width: 1070px) {
+    .col-md-6{
+        width: 50%;
+        float: left;
+    }
+}

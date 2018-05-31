@@ -1,0 +1,48 @@
+<mat-card style="padding: 10px;" class="demo-card demo-basic">
+    <mat-toolbar color="primary">{{addCars ? 'Ajouter' : 'Modifier'}}</mat-toolbar>
+    <mat-card-content>
+        <form style="margin-top:25px;padding: 25px;">          
+            <table style="width: 100%" cellspacing="0"><tr>
+                    <td>
+                        <mat-form-field style="width: 100%">
+                            <input name="nomClasse" matInput [(ngModel)]="newcar.filiere" (ngModelChange)="searchCarNumber()" placeholder="Filière" [formControl]="CarNumberFormControl">
+                            <!-- <mat-autocomplete [hidden]="reservationIsActive" #auto="matAutocomplete">
+                                <mat-option *ngFor="let car of filtredCars " [value]="car.carNumber">
+                                    <span>{{ car.carNumber }}</span>
+                                    <small><i style="color:grey;">Model: {{car.carModel}}</i></small>
+                                </mat-option>
+                            </mat-autocomplete> -->
+                            <mat-error *ngIf="CarNumberFormControl.hasError('required')">
+                                This field is required
+                            </mat-error>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <mat-form-field style="width: 100%" floatPlaceholder="never">
+                    <input name="nombreAnnée" [(ngModel)]="newcar.nbAnnee" type="number" matInput placeholder="Nombre d'année d'études"  [formControl]="ModelCarFormControl">
+                    <mat-error *ngIf="ModelCarFormControl.hasError('required')">
+                        This field is required
+                    </mat-error>
+                </mat-form-field>
+            </p>
+            <p>                    
+                <mat-form-field style="margin-right:10px;" >
+                    <input name="Date Ouverture" matInput [(ngModel)]="newcar.DateOuverture" (focus)="picker.open()"  [matDatepicker]="picker" placeholder="Date Ouverture" [formControl]="DateBirthFormControl">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="DateBirthFormControl.hasError('required')">
+                        This field is required
+                    </mat-error>
+                </mat-form-field>
+            </p>            
+            <p style="margin-top: 15px;">                
+                <button mat-raised-button style="padding:5px;" type="submit" color="primary" (click)="submit()">
+                    {{addCars ? 'Add' : 'Edit'}}
+                </button>
+            </p>
+        </form>
+    </mat-card-content>
+  </mat-card>
+  <mat-spinner style="z-index:50;position:absolute;width:30px !important;height:30px !important;top:calc(50% - 30px);left:calc(50% - 30px);" *ngIf='isloading'></mat-spinner>

@@ -1,0 +1,14 @@
+Meteor.users.schema = new SimpleSchema({
+    username: {
+        type: String,
+        optional: true
+    },
+    phone: {
+        type: String,
+        optional: true
+    },
+    city: {
+        type: String,
+        optional: true
+    }
+});

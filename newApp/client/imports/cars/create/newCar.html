@@ -1,0 +1,67 @@
+<mat-card style="padding: 10px;" class="demo-card demo-basic">
+  <mat-toolbar color="primary">{{addCars ? 'Ajouter un nouveau' : 'Modifier'}} étudiant</mat-toolbar>
+  <mat-card-content>
+    <form style="margin-top:25px;padding: 25px;">
+      <!-- <mat-form-field class="demo-full-width">
+        <input matInput placeholder="Nom de l'adminisatrateur" disabled value="{{myAgency ? myAgency.name : ''}}">
+      </mat-form-field> -->
+        <mat-form-field style="width: 100%" floatPlaceholder="never">
+            <input name="carModel" [(ngModel)]="newcar.code" matInput placeholder="Code livre"  [formControl]="ModelCarFormControl">
+            <mat-error *ngIf="CodeFromControl.hasError('required')">
+                This field is required
+            </mat-error>
+        </mat-form-field>
+      <table style="width: 100%" cellspacing="0"><tr>
+          <td>
+                <mat-form-field style="width: 100%" floatPlaceholder="never">
+                        <input name="carModel" [(ngModel)]="newcar.titre" matInput placeholder="Titre"  [formControl]="ModelCarFormControl">
+                        <mat-error *ngIf="ModelCarFormControl.hasError('required')">
+                            This field is required
+                        </mat-error>
+                      </mat-form-field>
+          </td>
+        <td>
+            <mat-form-field style="width: 100%" floatPlaceholder="never">
+              <input name="carModel" [(ngModel)]="newcar.categorie" matInput placeholder="Catégorie"  [formControl]="ModelCarFormControl">
+              <mat-error *ngIf="ModelCarFormControl.hasError('required')">
+                  This field is required
+              </mat-error>
+            </mat-form-field>
+        </td>
+      </tr></table>
+      <p>
+        <mat-form-field style="margin-right:10px;" >
+            <input name="purchaseDate" matInput [(ngModel)]="newcar.dateAchat" (focus)="picker.open()"  [matDatepicker]="picker" placeholder="Date d'achat" [formControl]="PurchaseDateFormControl">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="PurchaseDateFormControl.hasError('required')">
+                This field is required
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+                <input name="dateAssurance"  matInput [(ngModel)]="newcar.dateEdition" (focus)="pickerAssurance.open()"  [matDatepicker]="pickerAssurance" placeholder="Date de l'édition">
+                <mat-datepicker-toggle matSuffix [for]="pickerAssurance"></mat-datepicker-toggle>
+                <mat-datepicker #pickerAssurance></mat-datepicker>
+        </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field>                    
+                <input name="rentalPrice" matInput type="number" [(ngModel)]="newcar.prix" placeholder="Prix" [formControl]="RentalPriceFormControl"></input>                
+                <mat-error *ngIf="RentalPriceFormControl.hasError('required')">
+                    This field is required
+                </mat-error>
+                <span matSuffix>&nbsp;Dh</span>
+            </mat-form-field>
+        </p>  
+        <p *ngIf="!addCars">
+            <mat-slide-toggle name="allowHourReservation" [checked]="false" color="warn" [(ngModel)]="newcar.disponible" >Disponible</mat-slide-toggle>                
+        </p>
+        <p style="margin-top: 15px;">
+            
+            <button mat-raised-button style="padding:5px;" type="submit" color="primary" (click)="submit()">{{addCars ? 'Add' : 'Edit'}}</button>       
+        </p>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<mat-spinner style="z-index:50;position:absolute;width:30px !important;height:30px !important;top:calc(50% - 30px);left:calc(50% - 30px);" *ngIf='isloading'></mat-spinner>

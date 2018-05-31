@@ -1,0 +1,58 @@
+<div>
+    <mat-form-field style="width:60%;">
+        <input
+        matInput
+        type='text'
+        
+        placeholder='Search'
+        (keyup)='updateFilter($event)'
+        />
+        <span mat-button matPrefix style="padding-right: 8px;cursor:pointer;"><i class="fa fa-search" aria-hidden="true"></i></span>
+        <span mat-button matSuffix style="padding-left: 8px;cursor:pointer;"><i [matMenuTriggerFor]="menu" class="fa fa-angle-down" aria-hidden="true"></i></span>
+    </mat-form-field>
+    <mat-menu #menu="matMenu">
+        <button *ngFor="let column of columns;" (click)="typeChoose(column.prop)" mat-menu-item>{{column.name}}</button>
+    </mat-menu>
+    <div style="position: absolute;right: 5px;top: 3px; display:inline;">
+            <button *ngIf="selected.length > 0" (click)="Delete()" mat-fab color="warn" style="font-size:20px;">                    
+                <i class="fa fa-trash" aria-hidden="true"></i>
+            </button>
+            <button *ngIf="selected.length == 1" (click)="Edit()" mat-fab color="primary" style="font-size:20px;">                    
+                    <i aria-hidden="true" class="fa fa-pencil"></i>
+            </button>
+            <button (click)="Add()" mat-fab color="primary" style="font-size:20px;">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+            
+    </div>
+    
+        
+    <ngx-datatable
+        class="material striped noselect"
+        [rows]="rows"
+        [columns]="columns"
+        [sortType]="'multi'"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="50"
+        [selected]="selected"
+        [selectionType]="'multiClick'"
+        [reorderable]="reorderable"
+        [limit]="10"
+        (select)="onSelect($event)"
+        (activate)="onActivate($event)"
+        >
+
+        <ngx-datatable-column
+        [width]="30"
+        [canAutoResize]="false"
+        [draggable]="true"
+        [resizeable]="true"
+        [headerCheckboxable]="true"
+        [checkboxable]="true">
+        </ngx-datatable-column>
+        <ngx-datatable-column *ngFor='let column of columns' prop="{{column.prop}}" name="{{column.name}}"></ngx-datatable-column>
+        
+    </ngx-datatable>
+</div>

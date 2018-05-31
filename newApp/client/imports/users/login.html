@@ -1,0 +1,17 @@
+<header>
+</header>
+
+ <fieldset  (click)="hidePopus($event)" class="formholder" style="    text-align: center;
+    margin: auto;
+    padding: 10px;padding: 20px 20px 20px 20px;" >
+   <p class="labelRegister" style="font-size: 40px;">Connect</p>
+
+
+   <input type="email"  [(ngModel)]="email" class="inputSignUp" placeholder="Enter your email address" />
+   <!-- <label name="password">Password</label> -->
+   <input type="password"  [(ngModel)]="password" class="inputSignUp" placeholder="Enter your password" />
+   <!-- <label name="password">Password</label> -->
+      
+   <input type="submit" class="btnConnect" value="connect" />
+   <p *ngIf="message">{{message}}</p>
+</fieldset >
